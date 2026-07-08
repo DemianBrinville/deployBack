@@ -39,7 +39,11 @@ sequelize
     console.error("Error al sincronizar la Base de Datos:", err);
   });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
-});
+// 2. CORRECCIÓN CRÍTICA PARA VERCEL:
+// Solo ejecutamos app.listen localmente. En Vercel, NO debemos levantar el puerto manualmente.
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Servidor corriendo localmente en el puerto ${PORT}`);
+  });
+}
