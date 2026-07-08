@@ -47,3 +47,5 @@ if (process.env.NODE_ENV !== "production") {
     console.log(`Servidor corriendo localmente en el puerto ${PORT}`);
   });
 }
+
+module.exports = app;
